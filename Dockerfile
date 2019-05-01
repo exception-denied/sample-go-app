@@ -3,7 +3,7 @@
 # Start from golang v1.11 base image
 FROM golang:1.11
 
-
+WORKDIR $(System.DefaultWorkingDirectory)
 # Set the Current Working Directory inside the container
 
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
