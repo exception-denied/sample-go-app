@@ -8,14 +8,13 @@ FROM golang:1.11
 WORKDIR $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
 
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
-COPY . .
 
 # Download all the dependencies
 # https://stackoverflow.com/questions/28031603/what-do-three-dots-mean-in-go-command-line-invocations
-RUN go get -d -v https://github.com/krishna2751992/sample-go-app.git
+RUN go get -d  https://github.com/krishna2751992/sample-go-app.git
 
 # Install the package
-RUN go install -v https://github.com/krishna2751992/sample-go-app.git
+RUN go build
 
 # This container exposes port 8080 to the outside world
 EXPOSE 8080
