@@ -10,7 +10,7 @@ WORKDIR $(System.DefaultWorkingDirectory)
 
 # Download all the dependencies
 # https://stackoverflow.com/questions/28031603/what-do-three-dots-mean-in-go-command-line-invocations
-RUN go get -d  https://github.com/krishna2751992/sample-go-app.git
+RUN go get -d -v
 
 # Install the package
 RUN go build
