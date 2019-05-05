@@ -12,15 +12,14 @@ WORKDIR $GOPATH/src/github.com/callicoder/go-docker
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
 COPY . .
 
-# Download all the dependencies
-# https://stackoverflow.com/questions/28031603/what-do-three-dots-mean-in-go-command-line-invocations
-RUN go get -d -v ./...
+# Enable Go Modules
+ENV GO111MODULE=on
 
-# Install the package
-RUN go install -v ./...
+# Build the Go app
+RUN go build -o ./out/go-docker .
 
 # This container exposes port 8080 to the outside world
 EXPOSE 8080
 
-# Run the executable
-CMD ["go-docker"]
+# Run the binary program produced by `go install`
+CMD ["./out/go-docker"]
