@@ -4,19 +4,19 @@
 FROM golang:1.11
 
 # Set the Current Working Directory inside the container
-
+WORKDIR $GOPATH/src/github.com/krishna2751992/sample-go-app
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
 COPY . .
 
 # Download all the dependencies
 # https://stackoverflow.com/questions/28031603/what-do-three-dots-mean-in-go-command-line-invocations
-RUN go get -d -v
+RUN go get -d -v ./...
 
 # Install the package
-RUN go build
+ RUN go build ./...
 
 # This container exposes port 8080 to the outside world
 EXPOSE 8080
 
 # Run the executable
-CMD ["hello"]
+CMD ["go-docker"]
