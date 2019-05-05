@@ -4,7 +4,6 @@
 FROM golang:1.11
 
 # Add Maintainer Info
-LABEL maintainer="Rajeev Singh <rajeevhub@gmail.com>"
 
 # Set the Current Working Directory inside the container
 WORKDIR $GOPATH/src/github.com/krishna2751992/sample-go-app
