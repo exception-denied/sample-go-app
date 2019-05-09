@@ -1,4 +1,4 @@
-aws_region = "ap-south-1"
+aws_region = "us-east-1"
 az_count = 2
 app_image = "qorbani/golang-hello-world"
 app_port = 8080
