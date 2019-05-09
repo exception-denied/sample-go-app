@@ -5,21 +5,25 @@ FROM golang:1.11
 
 # Add Maintainer Info
 
+# Download and install dep
+ADD https://github.com/golang/dep/releases/download/v0.5.0/dep-linux-amd64 /usr/bin/dep
+RUN chmod +x /usr/bin/dep
+
 # Set the Current Working Directory inside the container
 WORKDIR $GOPATH/src/github.com/krishna2751992/sample-go-app
+
+# COPY dependencies file and install all dependencies
+COPY Gopkg.toml Gopkg.lock ./
+RUN dep ensure --vendor-only
 
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
 COPY . .
 
-# Download all the dependencies
-# https://stackoverflow.com/questions/28031603/what-do-three-dots-mean-in-go-command-line-invocations
-RUN go get -d -v ./...
-
-# Install the package
-RUN go install -v ./...
+# Building the package
+RUN go build -o ./out/go-docker .
 
 # This container exposes port 8080 to the outside world
 EXPOSE 8080
 
-# Run the executable
-CMD ["go-docker"]
+# Run the built binary executable
+CMD ["./out/go-docker"]
